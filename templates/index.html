@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ColorOut.</title>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/style.css')}}">
+    <script src="{{url_for('static', filename = 'js/script')}}"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="col-5">
+                <form action="/colorize" method="post" enctype="multipart/form-data">
+                    <table>
+                        <tr>
+                            <th colspan="2"><br><h1>ColorOut.</h1><br></th>
+                        </tr>
+                        <tr id="imp-file">
+                            <td>
+                                <label class="drop-area" for="input-file" id="drop-area">
+                                    <input type="file" id="input-file" name="image" id="image" action="image/*" required hidden>
+                                    <div id="img-view">
+                                        <div class="upload-symbol"></div>
+                                        <p>Drag & drop your file here<BR>or<BR>Click to Select<label for="file-input" style="color: #007bff; cursor: pointer;"></label></p>
+                                        <div class="file-name" id="file-name"></div>
+                                    </div>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <br>
+                                <button type="submit">COLORIZE</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {% if original_image %}
+                                    <br>
+                                    <div class="col-3">
+                                        <table>
+                                            <tr class="space">
+                                                <td>
+                                                    <label>Colorized Image</label>
+                                                    <img src="{{ url_for('static', filename='uploads/' + colorized_image) }}" alt="Colorized Image" style="margin-top: 2%; width: 90%; height: 90%; max-width: 500px;">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
